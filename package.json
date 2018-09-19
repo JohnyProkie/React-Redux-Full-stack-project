@@ -1,0 +1,22 @@
+{
+  "name": "philipines",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.13",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.18.4",
+    "validator": "^10.7.1",
+    "xoauth2": "^1.2.0"
+  }
+}
