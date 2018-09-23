@@ -58,10 +58,10 @@ function Add(name, date, poznamka) {
 console.log("Add P AKCE")
 
   PhiliCollection.create({ name: name , date: date, state: false , poznamka: poznamka, 
-  	'subinfo.0.name_sub': 'Nabídka', 'subinfo.0.date_sub': 112233, 'subinfo.0.poznamka_sub': "PoznamkaX 1", 'subinfo.0.state_sub': true,
+  	'subinfo.0.name_sub': 'Nabídka', 'subinfo.0.date_sub': '2018-09-29', 'subinfo.0.poznamka_sub': "Poznamka první", 'subinfo.0.state_sub': true,
   	'subinfo.1.name_sub': 'Hlášenka', 'subinfo.1.state_sub': false,
 	'subinfo.2.name_sub': 'Výběr zaměstnance', 'subinfo.2.state_sub': false,
-	'subinfo.3.name_sub': 'Podání žádosti', 'subinfo.3.state_sub': false,
+											'subinfo.3.state_sub': false,
 	'subinfo.4.name_sub': 'Letenka', 'subinfo.3.state_sub': false,
 	'subinfo.5.name_sub': 'Biometrie', 'subinfo.3.state_sub': false,
 	'subinfo.3.subinfo_sub.0.name_sub2': 'Kompletace náležitostí', 'subinfo.3.subinfo_sub.0.state_sub2': true, 'subinfo.3.subinfo_sub.0.id_sub2': 31,
@@ -99,14 +99,14 @@ function validateInput(data) {
 	}
 }
 
-var ONE_MINUTE = 5000;
+var ONE_MINUTE = 10000;
 function showTime() {
   console.log(new Date());
-	PhiliCollection.find( { "subinfo.date_sub":(new Date()).toISOString().substr(0,10) }, function(err, data){
-		console.log(data[0].name+ ' - ' + (new Date()).toISOString().substr(0,10) );
+	PhiliCollection.find( { "date":(new Date()).toISOString().substr(0,10) }, function(err, data){
+		console.log(data[0].name + ' - ' + data[1].name + ' - ' + (new Date()).toISOString().substr(0,10) );
 	} )
 }
-//setInterval(showTime, ONE_MINUTE);
+setInterval(showTime, ONE_MINUTE);
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
@@ -114,7 +114,7 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 app.get('/', function(req, res, next) {
 	console.log("__dirname--------------------   ---- ");
 	console.log(__dirname);
-  res.sendFile(path.join(__dirname + '/client/dist/'));
+  res.sendFile(path.join(__dirname + '/client/dist/index.html'));
 });
 
 
@@ -145,22 +145,10 @@ app.get('/add', function(req, res, next) {
 });
 
 
-app.get('/upd', function(req, res, next) {
-	var update = { info: 'two updated'};
-
-	PhiliCollection.find( { "subinfo.date_sub":"2018-09-21" }, function(err, data){
-		console.log(data);
-		res.send(data[0].name+ ' - ' + (new Date()).toISOString().substr(0,10) );
-	} )
-
-});
-
 
 //Request Pridej zakaznika
 
 app.post('/add/custommer',function(req , res, next){
-	console.log("Co pridavam??")
-	console.log(req.body)
 	Add(req.body.name, req.body.date, req.body.poznamka);
 
 });
@@ -223,9 +211,7 @@ app.post('/update-sub2/id',function(req , res, next){
      console.log("Update hotov _______X_____"); 
      console.log(data);
   });
-
 });
-
 
 //Login USERS
 app.post('/api/users',function(req , res, next){

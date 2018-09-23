@@ -4,6 +4,7 @@ import Login from './Login/login-page'
 import { Redirect } from 'react-router'
 import { Route, NavLink, Router} from "react-router-dom"
 import history from './history'
+import { Alert } from 'react-bootstrap';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Grid , Row , Col , Image, Table, Button } from 'react-bootstrap';
+import { Grid , Row , Col , Image, Table, Button, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {Show, Edit2, ChangeSub2, SaveSub2 } from '../Actions/actions'
@@ -22,9 +22,9 @@ handleEdit(){
 
 checkHotovo(){
   if (this.props.row.state_sub2) {
-    return(<Button bsStyle="success" > Hotovo </ Button>)
+    return(<Button bsStyle="success" ><Glyphicon glyph="glyphicon glyphicon-ok" /> Done </ Button>)
   }
-  return(<Button bsStyle="danger" > Chybí </ Button>)
+  return(<Button bsStyle="danger" ><Glyphicon glyph="glyphicon glyphicon-remove" /> In Progress </ Button>)
 }
 //
 
@@ -34,10 +34,6 @@ handleChange(){
 }
 
   handleSaveSub2(){
-    console.log('ref Datum ]}}}}}}}}}}}}}}}}-+- this.props.row._id')
-    console.log(this.props)
-    console.log(this.props.Reducer.custommers[this.props.Reducer.workingId].subinfo[3]._id)
-    console.log(this.props.row.id_sub2)
 
 
     fetch('/update-sub2/id', {
@@ -60,28 +56,20 @@ handleChange(){
   buttony(){
     if (this.props.Reducer.isEditting && this.props.index == this.props.Reducer.workingSub2) {
       return(   <div className="text-center" >
-                <Button bsStyle="success" style={wellStyles} onClick={this.handleSaveSub2.bind(this)} >Save</Button>
-                <Button bsStyle="warning" style={wellStyles} onClick={this.handleEdit.bind(this)} >Cancel</Button>
+                <Button bsStyle="success" style={wellStyles} onClick={this.handleSaveSub2.bind(this)} ><Glyphicon glyph="glyphicon glyphicon-floppy-disk" /> Save </Button>
+                <Button bsStyle="warning" style={wellStyles} onClick={this.handleEdit.bind(this)} ><Glyphicon glyph="glyphicon glyphicon-pause" /> Cancel </Button>
                 </div>)
     } 
     return(     <div className="text-center" >
-                <Button bsStyle="success" style={wellStyles} onClick={this.handleEdit.bind(this)}>Edit</Button>
+                <Button bsStyle="success" style={wellStyles} onClick={this.handleEdit.bind(this)}><Glyphicon glyph="glyphicon glyphicon-pencil"/> Edit </Button>
                 </div>)
   }
 
   renderRow(){
-    console.log("this.props.row")
-    console.log(this.props.row)
     var curr = new Date();
     curr.setDate(curr.getDate() + 3);
     var date = curr.toISOString().substr(0,10);
     var dateRedux = curr.toISOString();
-    console.log("curr")
-    console.log(curr)
-    console.log("date")
-    console.log(date)
-    console.log("date no short")
-    console.log(dateRedux)
     if (this.props.Reducer.isEditting && this.props.index == this.props.Reducer.workingSub2) {
       return(
                 <tr>
@@ -106,10 +94,6 @@ handleChange(){
     var curr = new Date();
     curr.setDate(curr.getDate() + 3);
     var date = curr.toISOString().substr(0,10);
-    console.log("curr")
-    console.log(curr)
-    console.log("date")
-    console.log(date)
     return (
             <tbody>
               {this.renderRow()}

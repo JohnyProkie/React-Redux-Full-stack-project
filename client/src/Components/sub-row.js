@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Edit, Sub2, ChangeSub, SaveSub } from '../Actions/actions'
 import * as ProductActions from '../Actions/actions' 
-import { Button } from 'react-bootstrap';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 
 const wellStyles = { width: 80, margin: 2 };
+const wellStyles2 = { width: 150, margin: 0, float: "left" };
 
 class RowSubRow extends Component {
 
@@ -43,28 +44,42 @@ class RowSubRow extends Component {
 
   proklikSub(){
     if (this.props.index === 3) {
-      return(<div className="Arrow-inside" onClick={this.handleSub2.bind(this)} > <Button bsStyle="info" style={wellStyles} >Go IN</Button> </div>)
+      return(<div className="text-center" onClick={this.handleSub2.bind(this)} > <Button bsStyle="info" style={wellStyles2} ><Glyphicon glyph="glyphicon glyphicon-forward" /> Podání žádosti <Glyphicon glyph="glyphicon glyphicon-forward" /> </Button> </div>)
     }
     return('')
   }
 
 
 checkHotovo(){
-  if (this.props.classe.state_sub) {
-    return(<Button bsStyle="success" > Hotovo </ Button>)
+
+  if (this.props.index == 3 ) {
+          console.log("_____XXXXX 2 DONE SSSS_____________")
+      console.log(this.props.classe.subinfo_sub[0].state_sub2)
+      console.log(this.props.classe.subinfo_sub[1].state_sub2)
+    if (this.props.classe.subinfo_sub[0].state_sub2 == true && this.props.classe.subinfo_sub[1].state_sub2 == true && this.props.classe.subinfo_sub[2].state_sub2 == true && this.props.classe.subinfo_sub[3].state_sub2 == true && this.props.classe.subinfo_sub[4].state_sub2 == true && this.props.classe.subinfo_sub[5].state_sub2 == true) {
+        return(<Button bsStyle="success" ><Glyphicon glyph="glyphicon glyphicon-ok" /> Done whole Podání žádosti </ Button>)
+    } else {
+      return(<Button bsStyle="danger" > <Glyphicon glyph="glyphicon glyphicon-remove" />Podání žádosti is In Progress </ Button>)
+    }
+  } else{
+        if (this.props.classe.state_sub) {
+          return(<Button bsStyle="success" ><Glyphicon glyph="glyphicon glyphicon-ok" /> Done </ Button>)
+        }
+        return(<Button bsStyle="danger" > <Glyphicon glyph="glyphicon glyphicon-remove" /> In Progress </ Button>)
+      }
   }
-  return(<Button bsStyle="danger" > Chybí </ Button>)
-}
+
 //
+
   buttony(){
     if (this.props.Reducer.isEditting && this.props.index == this.props.Reducer.workingSub) {
       return(   <div className="text-center" >
-                <Button bsStyle="success" style={wellStyles} onClick={this.handleSaveSub.bind(this)} >Save</Button>
-                <Button bsStyle="warning" style={wellStyles} onClick={this.handleEdit.bind(this)} >Cancel</Button>
+                <Button bsStyle="success" style={wellStyles} onClick={this.handleSaveSub.bind(this)} ><Glyphicon glyph="glyphicon glyphicon-floppy-disk" /> Save</Button>
+                <Button bsStyle="warning" style={wellStyles} onClick={this.handleEdit.bind(this)} > <Glyphicon glyph="glyphicon glyphicon-pause" /> Cancel</Button>
                 </div>)
     } 
     return(     <div className="text-center" >
-                <Button bsStyle="success" style={wellStyles} onClick={this.handleEdit.bind(this)}>Edit</Button>
+                <Button bsStyle="success" style={wellStyles} onClick={this.handleEdit.bind(this)}> <Glyphicon glyph="glyphicon glyphicon-pencil"/> Edit</Button>
                 </div>)
   }
 //
@@ -72,24 +87,22 @@ checkHotovo(){
     if (this.props.Reducer.isEditting && this.props.index == this.props.Reducer.workingSub) {
       return(
                 <tr>
-                <th>{this.props.classe.name_sub}</th>
+                <th>{this.props.classe.name_sub} {this.proklikSub()}</th>
                 <th><input ref="SubDatum" type="date" defaultValue={this.props.classe.date_sub}/></th>
                 <th><input ref="SubInfo" type="text" defaultValue={this.props.classe.poznamka_sub}/></th>
                 <th onClick={this.handleChange.bind(this)} >{this.checkHotovo()}</th>
                 <th>{this.buttony()}</th>
-                <th>{this.proklikSub()}</th>
                 </tr>
 
                )
     }
     return(
                 <tr>
-                <th>{this.props.classe.name_sub}</th>
+                <th>{this.props.classe.name_sub} {this.proklikSub()}</th>
                 <th>{this.props.classe.date_sub}</th>
                 <th>{this.props.classe.poznamka_sub}</th>
                 <th>{this.checkHotovo()}</th>
                 <th>{this.buttony()}</th>
-                <th>{this.proklikSub()}</th>
                 </tr>                
                )
   }

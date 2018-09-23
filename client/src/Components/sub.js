@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './styles-global.css';
 import _ from 'lodash';
-import { Grid , Row , Col , Image, Table, Button } from 'react-bootstrap';
+import { Grid , Row , Col , Image, Table, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { BackMain } from '../Actions/actions'
@@ -22,31 +23,28 @@ printrow(){
 }
 
   render() {
-
-
-    
+ 
     return (
       <div>
-    <h1>{this.props.Reducer.custommers[this.props.Reducer.workingId].name}</h1><Button bsStyle="success" style={wellStyles} onClick={this.backMain.bind(this)} > Zpět Main </Button>
     <div className="row" id='Main'>
+        <Row>
+         <Col  xs={12} className="nadpis"> <br/> <p> custommer: </p> <h1>{this.props.Reducer.custommers[this.props.Reducer.workingId].name}</h1> </Col>
+        </Row>
       <div className="span6">
         <div className="Main" >
+
          <Table striped bordered condensed hover>
             <thead>
               <tr>
                 <th>Pracovní Agentura Atlas s.r.o. </th>
-                <th>Datum</th>
-                <th>Poznámka</th>
-                <th>Hotovo</th>
-                <th>Akce</th>
-                <th>Sub-Tabulka</th>
+                <th>Date</th>
+                <th>Comment</th>
+                <th>State</th>
+                <th>Action</th>
               </tr>
             </thead>
-            
-              {this.printrow()}
-                     
+              {this.printrow()}    
             <tfoot>
-
             </tfoot>
           </Table>
           </div>

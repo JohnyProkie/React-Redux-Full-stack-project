@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './styles-global.css';
 import _ from 'lodash';
-import { Grid , Row , Col , Image, Table, Button } from 'react-bootstrap';
+import { Grid , Row , Col , Image, Table, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {Show, BackSub } from '../Actions/actions'
@@ -29,24 +30,22 @@ printrow(){
 
   render() {
 
-
-
-      console.log('SUB2 props ---');
-  console.log(this.props)
-
     return (
       <div>
-    <h1>{this.props.Reducer.custommers[this.props.Reducer.workingId].name}</h1> <Button bsStyle="success" style={wellStyles} onClick={this.backSub.bind(this)} > Zpět </Button>
-    <div className="row" id='Main'>
+     <div className="row" id='Main'>
+        <Row>
+         <Col  xs={12} className="nadpis"> <h1>{this.props.Reducer.custommers[this.props.Reducer.workingId].name}</h1> </Col>
+        </Row>
       <div className="span5">
         <div className="Main" >
+
          <Table striped bordered condensed hover>
             <thead>
               <tr>
-                <th>Žádost</th>
-                <th>Datum</th>
-                <th>Hotovo</th>
-                <th>Akce</th>
+                <th>Document</th>
+                <th>Date</th>
+                <th>State</th>
+                <th>Action</th>
               </tr>
             </thead>
               {this.printrow()}     
