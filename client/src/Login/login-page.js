@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import LoginForm from './login-form'
-import { connect } from 'react-redux'
-import { userSignupRequest } from '../Actions/login-actions'
 import { Alert } from 'react-bootstrap';
+import { connect } from 'react-redux'
+
+import LoginForm from './login-form'
+import { userSignupRequest } from '../Actions/login-actions'
 
 class Login extends Component {
   render(){

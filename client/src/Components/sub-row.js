@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Button, Glyphicon } from 'react-bootstrap'
+
 import { Edit, Sub2, ChangeSub, SaveSub } from '../Actions/actions'
 import * as ProductActions from '../Actions/actions' 
-import { Button, Glyphicon } from 'react-bootstrap';
 
 
 const wellStyles = { width: 80, margin: 2 };
-const wellStyles2 = { width: 150, margin: 0, float: "left" };
+const wellStyles2 = { width: 170, margin: 0, float: "left" };
 
 class RowSubRow extends Component {
 
@@ -43,7 +44,7 @@ class RowSubRow extends Component {
   }
 
   proklikSub(){
-    if (this.props.index === 3) {
+    if (this.props.index === 5) {
       return(<div className="text-center" onClick={this.handleSub2.bind(this)} > <Button bsStyle="info" style={wellStyles2} ><Glyphicon glyph="glyphicon glyphicon-forward" /> Podání žádosti <Glyphicon glyph="glyphicon glyphicon-forward" /> </Button> </div>)
     }
     return('')
@@ -52,8 +53,8 @@ class RowSubRow extends Component {
 
 checkHotovo(){
 
-  if (this.props.index == 3 ) {
-          console.log("_____XXXXX 2 DONE SSSS_____________")
+  if (this.props.index == 5 ) {
+
       console.log(this.props.classe.subinfo_sub[0].state_sub2)
       console.log(this.props.classe.subinfo_sub[1].state_sub2)
     if (this.props.classe.subinfo_sub[0].state_sub2 == true && this.props.classe.subinfo_sub[1].state_sub2 == true && this.props.classe.subinfo_sub[2].state_sub2 == true && this.props.classe.subinfo_sub[3].state_sub2 == true && this.props.classe.subinfo_sub[4].state_sub2 == true && this.props.classe.subinfo_sub[5].state_sub2 == true) {
@@ -87,28 +88,27 @@ checkHotovo(){
     if (this.props.Reducer.isEditting && this.props.index == this.props.Reducer.workingSub) {
       return(
                 <tr>
-                <th>{this.props.classe.name_sub} {this.proklikSub()}</th>
-                <th><input ref="SubDatum" type="date" defaultValue={this.props.classe.date_sub}/></th>
-                <th><input ref="SubInfo" type="text" defaultValue={this.props.classe.poznamka_sub}/></th>
-                <th onClick={this.handleChange.bind(this)} >{this.checkHotovo()}</th>
-                <th>{this.buttony()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.props.classe.name_sub} {this.proklikSub()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} ><input ref="SubDatum" type="date" defaultValue={this.props.classe.date_sub}/></th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} ><input ref="SubInfo" type="text" defaultValue={this.props.classe.poznamka_sub}/></th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} onClick={this.handleChange.bind(this)} >{this.checkHotovo()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.buttony()}</th>
                 </tr>
 
                )
     }
     return(
                 <tr>
-                <th>{this.props.classe.name_sub} {this.proklikSub()}</th>
-                <th>{this.props.classe.date_sub}</th>
-                <th>{this.props.classe.poznamka_sub}</th>
-                <th>{this.checkHotovo()}</th>
-                <th>{this.buttony()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'}  >{this.props.classe.name_sub} {this.proklikSub()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.props.classe.date_sub} { (this.props.index == 7) ? <Glyphicon glyph="glyphicon glyphicon-send" /> : ' '}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.props.classe.poznamka_sub} </th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.checkHotovo()}</th>
+                <th className={this.props.classe.priradit_sub ? 'atlas' : 'custommer'} >{this.buttony()}</th>
                 </tr>                
                )
   }
 
   render() {
-    
     return (
           <tbody>
                 {this.renderRow()}

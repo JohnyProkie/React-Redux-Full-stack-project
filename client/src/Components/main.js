@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './styles-global.css';
 import _ from 'lodash';
 import { Grid , Row , Col , Image, Table, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+import './styles-global.css';
 import {Sub, Edit, Refresh } from '../Actions/actions'
 import * as ProductActions from '../Actions/actions'
 import MainRow from './main-row' 

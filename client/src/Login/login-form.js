@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+
 import history from '../history'
-
-
 
 export default class Login extends Component {
       constructor(props){

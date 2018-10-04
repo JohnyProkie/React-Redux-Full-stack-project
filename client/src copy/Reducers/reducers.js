@@ -2,35 +2,46 @@ import * as types from '../Actions/actions'
 
 const initialState = {
       custommers: [ 
-          {	id: 1, 
-          	name: 'Cekejte na nacteni dat z databaze', 
+          { name: 'Cekejte na nacteni dat z databaze', 
           	date: 2018, 
+          	state: false,
           	poznamka: "cekej", 
 	        subinfo: [ 
 	          	 {
-	          		name: 'nabidka',
-	         		datum: 2017,
-	         		info: "Nabidka podána",
-	         		hotovo: true,	
+	          		name_sub: 'nabidka',
+	         		date_sub: "2017-09-09",
+	         		poznamka_sub: "Nabidka podána",
+	         		state_sub: true,	
 	          			},
 	          	 {
-	          		name: 'hlasenka',
-	         		datum: 2019,
-	          		info: "Zatim nic",
-	          		hotovo: false,	
+	          		name_sub: 'nabidka',
+	         		date_sub: "2017-09-09",
+	         		poznamka_sub: "Nabidka podána",
+	         		state_sub: true,
 	          			},
 	          	 {
-	          		name: 'Zadost',
-	         		datum: 2017,
-	         		info: "Cernosi v lodi",
-	         		hotovo: true,	
-	         		level3_name1: 'Kompletace náležitostí', 
-	         		level3_date1: 1299, 
-	         		level3_poznamka2: "false"}
-
+	          		name_sub: 'nabidka',
+	         		date_sub: "2017-09-09",
+	         		poznamka_sub: "Nabidka podána",
+	         		state_sub: true,
+	          			},	
+	          	{
+	          		name_sub: 'nabidka',
+	         		date_sub: "2017-09-09",
+	         		poznamka_sub: "Nabidka podána",
+	         		state_sub: true,
+	         		subinfo_sub: [
+	         			{name_sub2: 'Kompletace náležitostí PUVODNI', date_sub2: "2009-09-01", state_sub2: false},
+	         			{name_sub2: 'Podání žádosti PUVODNI', date_sub2: "2009-09-01", state_sub2: true},
+	         			{name_sub2: 'Žádost o nostrifikaci PUVODNI', date_sub2: "2009-09-01", state_sub2: false},
+	         			{name_sub2: 'Potvrzení nostrifikace PUVODNI', date_sub2: "2009-09-01", state_sub2: true},
+	         			{name_sub2: 'Rozhoduje se PUVODNI', date_sub2: "2009-09-01", state_sub2: false},
+	         			{name_sub2: 'Rozhodnuto PUVODNI', date_sub2: "2009-09-01", state_sub2: true},
 	         		]
 	          			},          				
 	          			], 
+          		},
+            ],
       working: false,
       rowMainShow: true,
       rowSubShow: false,
@@ -40,6 +51,7 @@ const initialState = {
       workingSub2: 0,
       isEditting: false,
       refreshVar: true,
+      level: 1,
 }
 
 const Reducer = (state , action) => {
@@ -57,6 +69,7 @@ const Reducer = (state , action) => {
 			b.rowSubShow = true
 			b.rowSub2Show = false
 			b.workingId = action.id
+			b.level = 2
 			return b
 		} 
 		case 'EDIT0':{
@@ -90,6 +103,8 @@ const Reducer = (state , action) => {
 			b.rowMainShow = false
 			b.rowSubShow = false
 			b.rowSub2Show = true
+			b.isEditting = false
+			b.level = 3
 			return b
 		}
 		case 'BACKSUB':{
@@ -99,6 +114,8 @@ const Reducer = (state , action) => {
 			b.rowMainShow = false
 			b.rowSubShow = true
 			b.rowSub2Show = false
+			b.isEditting = false
+			b.level = 2
 			return b
 		}
 		case 'BACKMAIN':{
@@ -108,6 +125,9 @@ const Reducer = (state , action) => {
 			b.rowMainShow = true
 			b.rowSubShow = false
 			b.rowSub2Show = false
+			b.isEditting = false
+			b.level = 1
+			b.workingId = 0
 			return b
 		}
 		case 'CHANGEMAIN':{
@@ -172,6 +192,7 @@ const Reducer = (state , action) => {
 			b.rowMainShow = true
 			b.rowSubShow = false
 			b.rowSub2Show = false
+			b.level = 1
 			return b
 		}
 		case 'DATATOREDUX':{

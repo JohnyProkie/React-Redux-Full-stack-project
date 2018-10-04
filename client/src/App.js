@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import _ from 'lodash';
 import { Grid , Row , Col , Image, Button, Table, Nav, NavItem } from 'react-bootstrap';
 import {createStore, combineReducers, bindActionCreators} from 'redux'
@@ -7,12 +6,14 @@ import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-import { DataToRedux, SavePoDelete, BackMain, BackSub } from './Actions/actions'
+import './App.css';
+import { DataToRedux, SavePoDelete, BackMain, BackSub, BackSub2 } from './Actions/actions'
 import * as ProductActions from './Actions/actions' 
 import DefaultApp from './Components/main'
 import Reducer from './Reducers/reducers' 
 import DefaultApp2 from './Components/sub'
 import DefaultApp3 from './Components/sub2'
+import DefaultApp4 from './Components/sub3'
 
 
 class App extends Component {
@@ -59,8 +60,6 @@ Del(delete_id){
       this.componentDidMount()
   }
 
-
-
   backMain(){
     this.props.BackMain()
   } 
@@ -68,6 +67,12 @@ Del(delete_id){
   backSub(){
 if (this.props.Reducer.rowSub2Show == true) {
     this.props.BackSub()
+    }
+ }
+
+   backSub2(){
+if (this.props.Reducer.rowSub3Show == true) {
+    this.props.BackSub2()
     }
  }
 
@@ -80,19 +85,29 @@ if (this.props.Reducer.working !== false) {
         document.getElementById('Main').style.display = 'block';
         document.getElementById('Sub').style.display = 'none';
         document.getElementById('Sub2').style.display = 'none';
+        document.getElementById('Sub3').style.display = 'none';
       }
     if (this.props.Reducer.rowSubShow == true) {
         console.log('2. cyklus' )
         document.getElementById('Main').style.display = 'none';
         document.getElementById('Sub').style.display = 'block';
         document.getElementById('Sub2').style.display = 'none';
+        document.getElementById('Sub3').style.display = 'none';
       }
       if (this.props.Reducer.rowSub2Show == true) {
         console.log('3. cyklus' )
         document.getElementById('Main').style.display = 'none';
         document.getElementById('Sub').style.display = 'none';
         document.getElementById('Sub2').style.display = 'block';
-      }   
+        document.getElementById('Sub3').style.display = 'none';
+      }  
+      if (this.props.Reducer.rowSub3Show == true) {
+        console.log('4. cyklus' )
+        document.getElementById('Main').style.display = 'none';
+        document.getElementById('Sub').style.display = 'none';
+        document.getElementById('Sub2').style.display = 'none';
+        document.getElementById('Sub3').style.display = 'block';
+      }  
     }
 console.log('App.js props' );
 console.log(this.props);
@@ -113,11 +128,14 @@ console.log(this.props);
           <NavItem eventKey={1} onClick={this.backMain.bind(this)} >
             Main
           </NavItem>
-          <NavItem eventKey={2} title="Item" onClick={this.backSub.bind(this)} >
+          <NavItem eventKey={2} onClick={this.backSub.bind(this)} >
           Sub - Menu
           </NavItem>
-          <NavItem eventKey={3} disabled >
+          <NavItem eventKey={3} onClick={this.backSub2.bind(this)} >
             Sub 2 - Menu
+          </NavItem>
+        <NavItem eventKey={4} disabled >
+            Sub 3 - Menu
           </NavItem>
         </Nav>
               
@@ -133,6 +151,9 @@ console.log(this.props);
             <div className="Sub" id='Sub2' >
          <DefaultApp3 />
           </div>
+         <div className="Sub" id='Sub3' >
+         <DefaultApp4 />
+          </div>
         </div>
    </div>
 
@@ -141,9 +162,9 @@ console.log(this.props);
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { DataToRedux, SavePoDelete, BackMain, BackSub } = bindActionCreators(ProductActions, dispatch)
+  const { DataToRedux, SavePoDelete, BackMain, BackSub, BackSub2 } = bindActionCreators(ProductActions, dispatch)
     return {
-      DataToRedux, SavePoDelete, BackMain, BackSub
+      DataToRedux, SavePoDelete, BackMain, BackSub, BackSub2
     }
 }
 

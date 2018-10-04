@@ -1,9 +1,22 @@
+// Going to SUB Menu -------
 
 export const Sub = (id) => ({
 	type: 'SUB',
-	payload: "message z pazload",
+	payload: " ",
 	id
 })
+
+export const Sub2 = () => ({
+	type: 'SUB2',
+	payload: " ",
+})
+
+export const Sub3 = () => ({
+	type: 'SUB3',
+	payload: " ",
+})
+
+//EDITTING ---------
 
 export const Edit0 = (indx) => ({
 	type: 'EDIT0',
@@ -12,52 +25,66 @@ export const Edit0 = (indx) => ({
 
 export const Edit = (indx) => ({
 	type: 'EDIT',
-	payload: "message z pazload",
+	payload: " ",
 	indx,
 })
 
 export const Edit2 = (indx) => ({
 	type: 'EDIT2',
-	payload: "message z pazload",
+	payload: " ",
 	indx,
 })
 
-export const Sub2 = () => ({
-	type: 'SUB2',
-	payload: "message z pazload",
-})
 
-export const BackSub = () => ({
-	type: 'BACKSUB',
-	payload: "message z pazload",
-})
+//Going BACK ---------
 
 export const BackMain = () => ({
 	type: 'BACKMAIN',
-	payload: "message z pazload",
+	payload: " ",
 })
+
+
+export const BackSub = () => ({
+	type: 'BACKSUB',
+	payload: " ",
+})
+
+export const BackSub2 = () => ({
+	type: 'BACKSUB2',
+	payload: " ",
+})
+
+// Change of state on each level --------
 
 export const ChangeMain = (indx) => ({
 	type: 'CHANGEMAIN',
-	payload: "message z pazload",
+	payload: " ",
 	indx
 })
 
 export const ChangeSub = (indx) => ({
 	type: 'CHANGESUB',
-	payload: "message z pazload",
+	payload: " ",
 	indx
 })
 
 export const ChangeSub2 = (indx) => ({
 	type: 'CHANGESUB2',
-	payload: "message z pazload",
+	payload: " ",
 	indx
 })
 
+export const ChangeSub3 = (indx) => ({
+	type: 'CHANGESUB3',
+	payload: " ",
+	indx
+})
+
+// SAVE new data about for the row ---------
+
 export const SaveMain = (indx, MainName, MainDate, MainPoznakma) => ({
 	type: 'SAVEMAIN',
-	payload: "message z pazload",
+	payload: " ",
 	indx,
 	MainName,
 	MainDate,
@@ -66,7 +93,7 @@ export const SaveMain = (indx, MainName, MainDate, MainPoznakma) => ({
 
 export const SaveSub = (indx, SubDatum, SubInfo) => ({
 	type: 'SAVESUB',
-	payload: "message z pazload",
+	payload: " ",
 	indx,
 	SubDatum,
 	SubInfo
@@ -74,14 +101,25 @@ export const SaveSub = (indx, SubDatum, SubInfo) => ({
 
 export const SaveSub2 = (indx, Sub2Datum) => ({
 	type: 'SAVESUB2',
-	payload: "message z pazload",
+	payload: " ",
 	indx,
 	Sub2Datum
 })
 
+export const SaveSub3 = (indx, Sub3Datum) => ({
+	type: 'SAVESUB3',
+	payload: " ",
+	indx,
+	Sub3Datum
+})
+
+// Press Login in left top corner ------
+
 export const BackLogin = () => ({
 	type: 'BACKLOGIN'
 })
+
+// Load data to redux --------
 
 export const DataToRedux = (data) => ({
 	type: 'DATATOREDUX',
@@ -89,13 +127,15 @@ export const DataToRedux = (data) => ({
 	data
 })
 
+// Delete and Save (only in Main level) ------
+
 export const Delete = () => ({
 	type: 'DELETE',
-	payload: "message z pazload",
+	payload: " ",
 })
 
 export const SavePoDelete = () => ({
 	type: 'SAVEPODELETE',
-	payload: "message z pazload",
+	payload: " ",
 })
 

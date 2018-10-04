@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import App from './App';
-import Login from './Login/login-page'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import { Route, NavLink, Router} from "react-router-dom"
-import history from './history'
-import { Alert } from 'react-bootstrap';
-
+import { Route, NavLink, Router} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Alert } from 'react-bootstrap';
+
+import history from './history'
+import App from './App';
+import Login from './Login/login-page'
 import {BackLogin } from './Actions/actions'
-import * as ProductActions from './Actions/actions' 
+import * as ProductActions from './Actions/actions' //Do i really need this?????????
 
 
 export class Gate extends Component {

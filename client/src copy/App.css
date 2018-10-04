@@ -79,5 +79,8 @@ ul.header li a {
   display: inline-block;
 }
 
+.wrap {
+  background-color: rgba(2, 2, 2, 0.2);
+}
 
 

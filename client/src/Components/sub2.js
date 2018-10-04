@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './styles-global.css';
 import _ from 'lodash';
 import { Grid , Row , Col , Image, Table, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+import './styles-global.css';
 import {Show, BackSub } from '../Actions/actions'
 import * as ProductActions from '../Actions/actions' 
 import Sub2Row from './sub2-row'
@@ -22,8 +23,8 @@ backSub(){
 printrow(){
   console.log("printrow()")
   console.log(this.props)
-  console.log(this.props.Reducer.custommers[this.props.Reducer.workingId].subinfo[3].subinfo_sub)
-  return( _.map(this.props.Reducer.custommers[this.props.Reducer.workingId].subinfo[3].subinfo_sub, (row, index) => <Sub2Row key={index} row={row} index={index}/>
+  console.log(this.props.Reducer.custommers[this.props.Reducer.workingId].subinfo[5].subinfo_sub)
+  return( _.map(this.props.Reducer.custommers[this.props.Reducer.workingId].subinfo[5].subinfo_sub, (row, index) => <Sub2Row key={index} row={row} index={index}/>
 
     ) )
 }  

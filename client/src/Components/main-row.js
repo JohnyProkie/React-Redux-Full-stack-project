@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Grid , Row , Col , Image, Table, Button, Glyphicon, Modal, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Row , Col , Image, Table, Button, Glyphicon, Modal, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import axios from 'axios'
+
 import {Sub, Edit0, SaveMain, ChangeMain } from '../Actions/actions'
 import * as ProductActions from '../Actions/actions' 
 import { custommerDelete } from '../Actions/delete-action'
-import axios from 'axios'
 
 
 const wellStyles = { width: 80, margin: 2 };
